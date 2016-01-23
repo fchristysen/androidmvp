@@ -1,4 +1,4 @@
-package org.sadalsuud.mvpplayground.framework.presenter;
+package org.sadalsuud.basemvp.presenter;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;

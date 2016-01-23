@@ -2,7 +2,8 @@ package org.sadalsuud.mvpplayground;
 
 import android.os.Bundle;
 
-import org.sadalsuud.mvpplayground.framework.presenter.MvpPresenter;
+import org.sadalsuud.basemvp.presenter.MvpPresenter;
+import org.sadalsuud.mvpplayground.view.BaseActivity;
 
 
 public class MainActivity extends BaseActivity {

@@ -1,6 +1,6 @@
-package org.sadalsuud.mvpplayground.framework.view;
+package org.sadalsuud.basemvp.view;
 
-import org.sadalsuud.mvpplayground.framework.presenter.MvpPresenter;
+import org.sadalsuud.basemvp.presenter.MvpPresenter;
 
 /**
  * Created by fchristysen on 1/21/16.

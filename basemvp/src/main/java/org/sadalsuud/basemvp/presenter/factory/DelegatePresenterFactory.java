@@ -1,4 +1,4 @@
-package org.sadalsuud.mvpplayground.framework.presenter.factory;
+package org.sadalsuud.basemvp.presenter.factory;
 
 /**
  * Created by fchristysen on 1/22/16.

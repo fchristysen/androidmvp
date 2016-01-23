@@ -1,9 +1,9 @@
-package org.sadalsuud.mvpplayground.framework.presenter;
+package org.sadalsuud.basemvp.presenter;
 
 import android.os.Bundle;
 
-import org.sadalsuud.mvpplayground.framework.presenter.factory.PresenterFactory;
-import org.sadalsuud.mvpplayground.framework.view.MvpView;
+import org.sadalsuud.basemvp.presenter.factory.PresenterFactory;
+import org.sadalsuud.basemvp.view.MvpView;
 
 /**
  * Created by fchristysen on 1/21/16.

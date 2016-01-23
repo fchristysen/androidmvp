@@ -1,9 +1,8 @@
-package org.sadalsuud.mvpplayground.framework.presenter;
+package org.sadalsuud.basemvp.presenter;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
-import org.sadalsuud.mvpplayground.framework.view.MvpView;
+import org.sadalsuud.basemvp.view.MvpView;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
     }
 
     @Override
-    public void attachView(@NonNull V view){
+    public void attachView(V view){
         this.mView = new WeakReference<V>(view);
         onViewAttached();
     }

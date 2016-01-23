@@ -1,8 +1,8 @@
-package org.sadalsuud.mvpplayground.framework.presenter.factory;
+package org.sadalsuud.basemvp.presenter.factory;
 
 import android.support.annotation.Nullable;
 
-import org.sadalsuud.mvpplayground.framework.presenter.MvpPresenter;
+import org.sadalsuud.basemvp.presenter.MvpPresenter;
 
 /**
  * This class represents a {@link PresenterFactory} that creates a presenter using {@link Class#newInstance()} method.

@@ -1,13 +1,13 @@
-package org.sadalsuud.mvpplayground;
+package org.sadalsuud.mvpplayground.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import org.sadalsuud.mvpplayground.framework.presenter.PresenterLifecycleManager;
-import org.sadalsuud.mvpplayground.framework.presenter.MvpPresenter;
-import org.sadalsuud.mvpplayground.framework.presenter.factory.PresenterFactory;
-import org.sadalsuud.mvpplayground.framework.view.MvpView;
+import org.sadalsuud.basemvp.presenter.PresenterLifecycleManager;
+import org.sadalsuud.basemvp.presenter.MvpPresenter;
+import org.sadalsuud.basemvp.presenter.factory.PresenterFactory;
+import org.sadalsuud.basemvp.view.MvpView;
 
 /**
  * Created by fchristysen on 1/21/16.
@@ -36,7 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mPresenterLifecycleManager.onSaveInstanceState(outState);
+//        mPresenterLifecycleManager.onSaveInstanceState(outState);
     }
 
     @Override
