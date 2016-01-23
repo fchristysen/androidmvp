@@ -10,19 +10,21 @@ import org.sadalsuud.basemvp.view.MvpView;
  * This class purpose is to receive activity's lifecycle and then manage the presenter
  */
 public class PresenterLifecycleManager<P extends MvpPresenter> {
-    private static final String KEY_PRESENTER_ID = "presenter_id";
     private static final String KEY_PRESENTER_STATE = "presenter_state";
+    private static final String KEY_PRESENTER_ID = "presenter_id";     //included in presenter bundle
 
     private PresenterFactory<P> mPresenterFactory;
     private P mPresenter;
-    private Bundle mActivityBundle;
+    private Bundle mPresenterBundle;
 
     public PresenterLifecycleManager(PresenterFactory<P> presenterFactory){
         this.mPresenterFactory = presenterFactory;
     }
 
     public void onRestoreInstanceState(Bundle savedInstanceState){
-        this.mActivityBundle = savedInstanceState;
+        if(savedInstanceState!=null && savedInstanceState.containsKey(KEY_PRESENTER_STATE)){
+            this.mPresenterBundle = savedInstanceState.getBundle(KEY_PRESENTER_STATE);
+        }
     }
 
     public void onResume(MvpView view){
@@ -41,15 +43,16 @@ public class PresenterLifecycleManager<P extends MvpPresenter> {
         }
     }
 
-    public Bundle onSaveInstanceState(){
-        Bundle bundle = new Bundle();
+    /**
+     * @param outState activity's bundle
+     */
+    public void onSaveInstanceState(Bundle outState){
         if(mPresenter != null){
             Bundle presenterBundle = new Bundle();
             mPresenter.onSaveInstanceState(presenterBundle);
-            bundle.putString(KEY_PRESENTER_ID, mPresenter.getID());
-            bundle.putBundle(KEY_PRESENTER_STATE, presenterBundle);
+            presenterBundle.putString(KEY_PRESENTER_ID, mPresenter.getID());
+            outState.putBundle(KEY_PRESENTER_STATE, presenterBundle);
         }
-        return bundle;
     }
 
     /**
@@ -58,13 +61,15 @@ public class PresenterLifecycleManager<P extends MvpPresenter> {
      */
     public P getPresenter(){
         if(mPresenter == null){
-            if(mActivityBundle != null){
-                mPresenter = PresenterStorage.getInstance().get(mActivityBundle.getString(KEY_PRESENTER_ID));
+            if(mPresenterBundle != null){   //try to get presenter from cache
+                mPresenter = PresenterStorage.getInstance().get(mPresenterBundle.getString(KEY_PRESENTER_ID));
             }
-            if(mPresenter == null){     //recreate presenter if not exist in PresenterStorage
+            if(mPresenter == null){     //recreate presenter if not exist in cache
                 mPresenter = mPresenterFactory.createPresenter();
-                if(mActivityBundle != null){    //pass presenter savedInstanceState to newly created presenter
-                    mPresenter.create(mActivityBundle.getBundle(KEY_PRESENTER_STATE));
+                if(mPresenterBundle != null){    //pass presenter savedInstanceState to newly created presenter
+                    mPresenter.create(mPresenterBundle.getBundle(KEY_PRESENTER_STATE));
+                }else{
+                    mPresenter.create(null);
                 }
                 PresenterStorage.getInstance().add(mPresenter);
             }

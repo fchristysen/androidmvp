@@ -1,6 +1,7 @@
 package org.sadalsuud.basemvp.presenter;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import org.sadalsuud.basemvp.view.MvpView;
 
@@ -77,7 +78,7 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
      * Called when this presenter is created
      * @param presenterState previously saved presenter state(nullable)
      */
-    public void onCreate(Bundle presenterState) {
+    public void onCreate(@Nullable Bundle presenterState) {
     }
 
     /**

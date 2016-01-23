@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import org.sadalsuud.basemvp.presenter.BasePresenter;
-import org.sadalsuud.basemvp.presenter.MvpPresenter;
 import org.sadalsuud.basemvp.presenter.PresenterLifecycleManager;
 import org.sadalsuud.basemvp.presenter.factory.PresenterFactory;
 import org.sadalsuud.basemvp.view.MvpView;
@@ -13,7 +12,7 @@ import org.sadalsuud.basemvp.view.MvpView;
  * Created by fchristysen on 1/21/16.
  */
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements MvpView, PresenterFactory{
-    private PresenterLifecycleManager mPresenterLifecycleManager= new PresenterLifecycleManager(this);
+    private PresenterLifecycleManager<P> mPresenterLifecycleManager= new PresenterLifecycleManager(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +35,15 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-//        mPresenterLifecycleManager.onSaveInstanceState(outState);
+        mPresenterLifecycleManager.onSaveInstanceState(outState);
     }
 
     @Override
-    public abstract MvpPresenter createPresenter();
-
-    @Override
-    public final MvpPresenter getPresenter() {
+    public final P getPresenter() {
         return mPresenterLifecycleManager.getPresenter();
     }
+
+    @Override
+    public abstract P createPresenter();
+
 }
