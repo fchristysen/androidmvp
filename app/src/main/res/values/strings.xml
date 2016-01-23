@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MVPPlayground</string>
+
+    <string name="main_loading_text">Please wait, we are downloading the hardcoded data.</string>
+    <string name="main_error">Sorry you are unlucky. Try again.</string>
+
 </resources>

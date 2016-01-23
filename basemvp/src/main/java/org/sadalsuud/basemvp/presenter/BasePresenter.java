@@ -22,30 +22,30 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
         this.mListeners = new ArrayList<>();
     }
 
-    public String getID() {
+    public final String getID() {
         return ID;
     }
 
     @Override
-    public void create(Bundle savedPresenterState){
+    public final void create(Bundle savedPresenterState){
         onCreate(savedPresenterState);
     }
 
     @Override
-    public void attachView(V view){
+    public final void attachView(V view){
         this.mView = new WeakReference<V>(view);
         onViewAttached();
     }
 
     @Override
-    public void detachView(){
+    public final void detachView(){
         onDetachView();
         this.mView = null;
         onViewDetached();
     }
 
     @Override
-    public V getView(){
+    public final V getView(){
         if(mView == null)
             return null;
         else
@@ -53,7 +53,7 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
     }
 
     @Override
-    public void destroy() {
+    public final void destroy() {
         onDestroy();
         for(OnDestroyListener listener:mListeners){
             listener.onDestroy(getID());
@@ -61,12 +61,12 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
     }
 
     @Override
-    public void addOnDestroyListener(OnDestroyListener listener) {
+    public final void addOnDestroyListener(OnDestroyListener listener) {
         mListeners.add(listener);
     }
 
     @Override
-    public boolean removeOnDestroyListener(OnDestroyListener listener) {
+    public final boolean removeOnDestroyListener(OnDestroyListener listener) {
         return mListeners.remove(listener);
     }
 
