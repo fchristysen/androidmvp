@@ -6,6 +6,7 @@ import android.content.ContextWrapper;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -22,6 +23,7 @@ import org.sadalsuud.mvpplayground.R;
  */
 public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>, PresenterFactory<Prs_CountView>, View.OnClickListener {
     public static final String KEY_PARENT_STATE = "parent_state";
+    public static final String KEY_CHILDREN_STATE = "children_state";
 
     private PresenterLifecycleManager<Prs_CountView> mPresenterLifecycleManager = new PresenterLifecycleManager(this);
     private View vRoot;
@@ -59,6 +61,9 @@ public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>
         if(state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
             super.onRestoreInstanceState(bundle.getParcelable(KEY_PARENT_STATE));
+            for(int i=0;i<getChildCount();i++){
+                getChildAt(i).restoreHierarchyState(bundle.getSparseParcelableArray(KEY_CHILDREN_STATE));
+            }
             mPresenterLifecycleManager.onRestoreInstanceState(bundle);
         }
     }
@@ -67,8 +72,23 @@ public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>
     protected Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable(KEY_PARENT_STATE, super.onSaveInstanceState());
+        SparseArray<Parcelable> childState = new SparseArray();
+        for(int i=0;i<getChildCount();i++){
+            getChildAt(i).saveHierarchyState(childState);
+        }
+        bundle.putSparseParcelableArray(KEY_CHILDREN_STATE, childState);
         mPresenterLifecycleManager.onSaveInstanceState(bundle);
         return bundle;
+    }
+
+    @Override
+    protected void dispatchSaveInstanceState(SparseArray<Parcelable> container) {
+        dispatchFreezeSelfOnly(container);
+    }
+
+    @Override
+    protected void dispatchRestoreInstanceState(SparseArray<Parcelable> container) {
+        dispatchThawSelfOnly(container);
     }
 
     @Override
