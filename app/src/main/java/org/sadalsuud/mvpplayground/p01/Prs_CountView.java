@@ -32,7 +32,7 @@ public class Prs_CountView extends BasePresenter<CV_CountView> {
     @Override
     protected void onViewAttached() {
         super.onViewAttached();
-        getView().setCounter(mCounter);
+        updateView();
     }
 
     @Override
@@ -52,11 +52,17 @@ public class Prs_CountView extends BasePresenter<CV_CountView> {
 
     public void add(){
         mCounter++;
-        getView().setCounter(mCounter);
+        updateView();
     }
 
     public void sub(){
         mCounter--;
-        getView().setCounter(mCounter);
+        updateView();
+    }
+
+    public void updateView(){
+        if(getView()!=null){
+            getView().setCounter(mCounter);
+        }
     }
 }
