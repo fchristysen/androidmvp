@@ -1,4 +1,4 @@
-package org.sadalsuud.mvpplayground.view;
+package org.sadalsuud.mvpplayground.p00;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import org.sadalsuud.mvpplayground.R;
 import org.sadalsuud.mvpplayground.base.BaseActivity;
-import org.sadalsuud.mvpplayground.presenter.MainPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,11 +87,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     public void navigateTo(Class page){
         Intent intent = new Intent(this, page);
+        startActivity(intent);
         Toast.makeText(this, "Will go to "+page.getSimpleName(), Toast.LENGTH_SHORT).show();
     }
 
     public void startLoading(){
         vLoadingLayout.setVisibility(View.VISIBLE);
+        vSwipeLayout.setRefreshing(true);
     }
 
     public void stopLoading(){

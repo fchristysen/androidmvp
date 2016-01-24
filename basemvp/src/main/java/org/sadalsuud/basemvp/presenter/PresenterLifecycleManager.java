@@ -10,8 +10,8 @@ import org.sadalsuud.basemvp.view.MvpView;
  * This class purpose is to receive activity's lifecycle and then manage the presenter
  */
 public class PresenterLifecycleManager<P extends MvpPresenter> {
-    private static final String KEY_PRESENTER_STATE = "presenter_state";
-    private static final String KEY_PRESENTER_ID = "presenter_id";     //included in presenter bundle
+    public static final String KEY_PRESENTER_STATE = "presenter_state";
+    public static final String KEY_PRESENTER_ID = "presenter_id";     //included in presenter bundle
 
     private PresenterFactory<P> mPresenterFactory;
     private P mPresenter;

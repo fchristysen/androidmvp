@@ -2,7 +2,7 @@ package org.sadalsuud.mvpplayground;
 
 import android.app.Application;
 
-import org.sadalsuud.mvpplayground.model.MainModelHandler;
+import org.sadalsuud.mvpplayground.p00.MainModelHandler;
 
 /**
  * Created by fchristysen on 1/23/16.
