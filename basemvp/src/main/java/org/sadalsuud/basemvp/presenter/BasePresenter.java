@@ -7,6 +7,7 @@ import org.sadalsuud.basemvp.view.MvpView;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by fchristysen on 1/21/16.
@@ -19,7 +20,7 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
 
     public BasePresenter(){
         this.TAG = this.getClass().getSimpleName();
-        this.ID = TAG + "/" + System.currentTimeMillis();
+        this.ID = TAG + "-" + System.currentTimeMillis() + "-" + Long.toHexString(new Random().nextLong());
         this.mListeners = new ArrayList<>();
     }
 
