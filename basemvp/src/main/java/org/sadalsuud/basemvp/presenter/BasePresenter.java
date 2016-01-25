@@ -3,6 +3,7 @@ package org.sadalsuud.basemvp.presenter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import org.sadalsuud.basemvp.AppUtil;
 import org.sadalsuud.basemvp.view.MvpView;
 
 import java.lang.ref.WeakReference;
@@ -80,6 +81,7 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
      * @param presenterState previously saved presenter state(nullable)
      */
     public void onCreate(@Nullable Bundle presenterState) {
+        AppUtil.log(TAG + " : " + "onCreate");
     }
 
     /**
@@ -88,33 +90,35 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
      */
     @Override
     public void onSaveInstanceState(Bundle outPresenterState) {
-
+        AppUtil.log(TAG + " : " + "onSaveInstanceState");
     }
 
     /**
      * Called after view is attached to this presenter
      */
     protected void onViewAttached(){
-
+        AppUtil.log(TAG + " : " + "onViewAttached");
     }
 
     /**
      * Called before view is detached to this presenter
      */
     protected void onDetachView(){
-
+        AppUtil.log(TAG + " : " + "onDetachView");
     }
 
     /**
      * Called after view is detached to this presenter
      */
     protected void onViewDetached(){
+        AppUtil.log(TAG + " : " + "onViewDetached");
     }
 
     /**
      * Called when the view is finishing
      */
     protected void onDestroy(){
+        AppUtil.log(TAG + " : " + "onDestroy");
     }
     //endregion
 

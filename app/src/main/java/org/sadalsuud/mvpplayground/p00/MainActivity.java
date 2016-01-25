@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.sadalsuud.mvpplayground.R;
 import org.sadalsuud.mvpplayground.base.BaseActivity;
@@ -88,7 +87,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
     public void navigateTo(Class page){
         Intent intent = new Intent(this, page);
         startActivity(intent);
-        Toast.makeText(this, "Will go to "+page.getSimpleName(), Toast.LENGTH_SHORT).show();
     }
 
     public void startLoading(){

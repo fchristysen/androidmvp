@@ -60,7 +60,9 @@ public class Prs_CountView extends BasePresenter<CV_CountView> {
         updateView();
     }
 
-
+    public void nextPage(){
+        getView().goToNextPage();
+    }
 
     public void updateView(){
         if(getView()!=null){
