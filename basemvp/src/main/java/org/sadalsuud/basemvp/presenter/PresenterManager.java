@@ -13,9 +13,9 @@ public class PresenterManager<P extends MvpPresenter> {
     public static final String KEY_PRESENTER_STATE = "presenter_state";
     public static final String KEY_PRESENTER_ID = "presenter_id";     //included in presenter bundle
 
-    private PresenterFactory<P> mPresenterFactory;
-    private P mPresenter;
-    private Bundle mPresenterBundle;
+    protected PresenterFactory<P> mPresenterFactory;
+    protected P mPresenter;
+    protected Bundle mPresenterBundle;
 
     public PresenterManager(PresenterFactory<P> presenterFactory){
         this.mPresenterFactory = presenterFactory;

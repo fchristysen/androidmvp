@@ -60,6 +60,8 @@ public class Prs_CountView extends BasePresenter<CV_CountView> {
         updateView();
     }
 
+
+
     public void updateView(){
         if(getView()!=null){
             getView().setCounter(mCounter);

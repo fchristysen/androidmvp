@@ -3,7 +3,6 @@ package org.sadalsuud.mvpplayground.p01;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.SparseArray;
@@ -13,7 +12,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.sadalsuud.basemvp.presenter.PresenterManager;
+import org.sadalsuud.basemvp.presenter.ViewPresenterManager;
 import org.sadalsuud.basemvp.presenter.factory.PresenterFactory;
 import org.sadalsuud.basemvp.view.MvpView;
 import org.sadalsuud.mvpplayground.R;
@@ -22,10 +21,7 @@ import org.sadalsuud.mvpplayground.R;
  * Created by fchristysen on 1/22/16.
  */
 public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>, PresenterFactory<Prs_CountView>, View.OnClickListener {
-    public static final String KEY_PARENT_STATE = "parent_state";
-    public static final String KEY_CHILDREN_STATE = "children_state";
-
-    private PresenterManager<Prs_CountView> mPresenterManager = new PresenterManager(this);
+    private ViewPresenterManager<Prs_CountView> mPresenterManager = new ViewPresenterManager(this);
     private View vRoot;
     private ImageButton vAddButton;
     private ImageButton vSubButton;
@@ -58,27 +54,12 @@ public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>
     //region lifecycle
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        if(state instanceof Bundle) {
-            Bundle bundle = (Bundle) state;
-            super.onRestoreInstanceState(bundle.getParcelable(KEY_PARENT_STATE));
-            for(int i=0;i<getChildCount();i++){
-                getChildAt(i).restoreHierarchyState(bundle.getSparseParcelableArray(KEY_CHILDREN_STATE));
-            }
-            mPresenterManager.onRestoreInstanceState(bundle);
-        }
+        super.onRestoreInstanceState(mPresenterManager.onRestoreInstanceState(this, state));
     }
 
     @Override
     protected Parcelable onSaveInstanceState() {
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(KEY_PARENT_STATE, super.onSaveInstanceState());
-        SparseArray<Parcelable> childState = new SparseArray();
-        for(int i=0;i<getChildCount();i++){
-            getChildAt(i).saveHierarchyState(childState);
-        }
-        bundle.putSparseParcelableArray(KEY_CHILDREN_STATE, childState);
-        mPresenterManager.onSaveInstanceState(bundle);
-        return bundle;
+        return mPresenterManager.onSaveInstanceState(this, super.onSaveInstanceState());
     }
 
     @Override
