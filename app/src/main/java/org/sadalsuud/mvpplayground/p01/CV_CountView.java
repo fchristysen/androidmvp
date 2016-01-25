@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.sadalsuud.basemvp.presenter.PresenterLifecycleManager;
+import org.sadalsuud.basemvp.presenter.PresenterManager;
 import org.sadalsuud.basemvp.presenter.factory.PresenterFactory;
 import org.sadalsuud.basemvp.view.MvpView;
 import org.sadalsuud.mvpplayground.R;
@@ -25,7 +25,7 @@ public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>
     public static final String KEY_PARENT_STATE = "parent_state";
     public static final String KEY_CHILDREN_STATE = "children_state";
 
-    private PresenterLifecycleManager<Prs_CountView> mPresenterLifecycleManager = new PresenterLifecycleManager(this);
+    private PresenterManager<Prs_CountView> mPresenterManager = new PresenterManager(this);
     private View vRoot;
     private ImageButton vAddButton;
     private ImageButton vSubButton;
@@ -64,7 +64,7 @@ public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>
             for(int i=0;i<getChildCount();i++){
                 getChildAt(i).restoreHierarchyState(bundle.getSparseParcelableArray(KEY_CHILDREN_STATE));
             }
-            mPresenterLifecycleManager.onRestoreInstanceState(bundle);
+            mPresenterManager.onRestoreInstanceState(bundle);
         }
     }
 
@@ -77,7 +77,7 @@ public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>
             getChildAt(i).saveHierarchyState(childState);
         }
         bundle.putSparseParcelableArray(KEY_CHILDREN_STATE, childState);
-        mPresenterLifecycleManager.onSaveInstanceState(bundle);
+        mPresenterManager.onSaveInstanceState(bundle);
         return bundle;
     }
 
@@ -94,13 +94,13 @@ public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        mPresenterLifecycleManager.onResume(this);
+        mPresenterManager.onResume(this);
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        mPresenterLifecycleManager.onPause(getActivity().isFinishing());
+        mPresenterManager.onPause(getActivity().isFinishing());
     }
     //endregion
 
@@ -135,7 +135,7 @@ public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>
 
     @Override
     public Prs_CountView getPresenter() {
-        return mPresenterLifecycleManager.getPresenter();
+        return mPresenterManager.getPresenter();
     }
 
     public void setCounter(int counter){
