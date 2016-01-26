@@ -69,7 +69,8 @@ public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>
     @Override
     protected Parcelable onSaveInstanceState() {
         AppUtil.log(TAG + " : " + "onSaveInstanceState");
-        return mPresenterManager.onSaveInstanceState(this, super.onSaveInstanceState());
+        Parcelable r = mPresenterManager.onSaveInstanceState(this, super.onSaveInstanceState());
+        return r;
     }
 
     @Override

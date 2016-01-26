@@ -20,8 +20,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.TAG = this.getClass().getSimpleName();
-        AppUtil.log(TAG + " : " + "onCreate");
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
+        AppUtil.log(TAG + " : " + "onCreate");
     }
 
     @Override
@@ -41,8 +41,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        AppUtil.log(TAG + " : " + "onSaveInstanceState");
         mPresenterManager.onSaveInstanceState(outState);
+        AppUtil.log(TAG + " : " + "onSaveInstanceState");
     }
 
     @Override

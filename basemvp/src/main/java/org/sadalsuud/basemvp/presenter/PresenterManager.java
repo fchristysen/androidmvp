@@ -36,11 +36,16 @@ public class PresenterManager<P extends MvpPresenter> {
     public void onPause(boolean isFinishing){
         if (mPresenter != null) {
             mPresenter.detachView();
-            if (isFinishing) {
+//            if (isFinishing) {
                 mPresenter.destroy();
                 mPresenter = null;
-            }
+//            }
         }
+    }
+
+    public void destroyPresenter(){
+        mPresenter.destroy();
+        mPresenter = null;
     }
 
     /**
@@ -66,11 +71,7 @@ public class PresenterManager<P extends MvpPresenter> {
             }
             if(mPresenter == null){     //recreate presenter if not exist in cache
                 mPresenter = mPresenterFactory.createPresenter();
-                if(mPresenterBundle != null){    //pass presenter savedInstanceState to newly created presenter
-                    mPresenter.create(mPresenterBundle.getBundle(KEY_PRESENTER_STATE));
-                }else{
-                    mPresenter.create(null);
-                }
+                mPresenter.create(mPresenterBundle);
                 PresenterStorage.getInstance().add(mPresenter);
             }
         }
