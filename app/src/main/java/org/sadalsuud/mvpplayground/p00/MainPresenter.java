@@ -14,8 +14,13 @@ import rx.functions.Action1;
  * Created by fchristysen on 1/23/16.
  */
 public class MainPresenter extends BasePresenter<MainActivity> {
+    public static final int STATE_START = 0;
+    public static final int STATE_LOADING = 1;
+    public static final int STATE_ERROR = 2;
+    public static final int STATE_RESULT = 3;
+
+    private int mState=STATE_START;
     private MainModelHandler mMainModelHandler;
-    private boolean isLoading = false;
     private List<Class> mDatas;
 
     //region lifecycle
@@ -23,7 +28,7 @@ public class MainPresenter extends BasePresenter<MainActivity> {
     public void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
         mMainModelHandler = App.getMainModelHandler();
-        refresh();
+//        refresh();
     }
 
     @Override
@@ -34,12 +39,7 @@ public class MainPresenter extends BasePresenter<MainActivity> {
     @Override
     protected void onViewAttached() {
         super.onViewAttached();
-        if(isLoading){
-            getView().startLoading();
-        }
-        if(mDatas!=null) {
-            getView().showPageList(mDatas);
-        }
+        updateViewState();
     }
 
     @Override
@@ -53,21 +53,39 @@ public class MainPresenter extends BasePresenter<MainActivity> {
     }
     //endregion
 
+    public void updateViewState(){
+        if(getView()==null)   return;
+        if(mState == STATE_START){
+            getView().showInfoScreen("Pull down to retrieve the dummy data");
+        }else if(mState == STATE_LOADING){
+            getView().startLoading();
+            getView().hideInfoScreen();
+        }else if(mState == STATE_ERROR){
+            getView().showInfoScreen("We could not load the data. The random number does not favors you.");
+            getView().stopLoading();
+        }else if(mState == STATE_RESULT){
+            getView().showPageList(mDatas);
+            getView().stopLoading();
+            getView().hideInfoScreen();
+        }
+    }
+
     //region Presenter-View
     public void refresh(){
-        isLoading = true;
-        if(getView()!=null) {
-            getView().startLoading();
-        }
+        mState = STATE_LOADING;
+        updateViewState();
         getPageList().subscribe(new Action1<List<Class>>() {
             @Override
             public void call(List<Class> classes) {
-                isLoading = false;
+                mState = STATE_RESULT;
                 mDatas = classes;
-                if(getView()!=null) {
-                    getView().showPageList(mDatas);
-                    getView().stopLoading();
-                }
+                updateViewState();
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                mState = STATE_ERROR;
+                updateViewState();
             }
         });
     }

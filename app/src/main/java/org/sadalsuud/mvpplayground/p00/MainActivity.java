@@ -17,7 +17,10 @@ import org.sadalsuud.mvpplayground.base.BaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * This page list and provide navigation to prototype activity
+ * This page also demonstrate simple mvp flow when requesting data to an API
+ */
 public class MainActivity extends BaseActivity<MainPresenter>
         implements SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
     private SwipeRefreshLayout vSwipeLayout;
@@ -91,7 +94,12 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     public void startLoading(){
         vLoadingLayout.setVisibility(View.VISIBLE);
-        vSwipeLayout.setRefreshing(true);
+        vSwipeLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                vSwipeLayout.setRefreshing(true);
+            }
+        });
     }
 
     public void stopLoading(){

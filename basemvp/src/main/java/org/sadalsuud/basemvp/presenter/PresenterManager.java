@@ -36,10 +36,9 @@ public class PresenterManager<P extends MvpPresenter> {
     public void onPause(boolean isFinishing){
         if (mPresenter != null) {
             mPresenter.detachView();
-//            if (isFinishing) {
-                mPresenter.destroy();
-                mPresenter = null;
-//            }
+            if (isFinishing) {
+                destroyPresenter();
+            }
         }
     }
 

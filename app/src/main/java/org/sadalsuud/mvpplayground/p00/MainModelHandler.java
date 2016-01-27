@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 
 /**
  * Created by fchristysen on 1/23/16.
@@ -37,6 +38,15 @@ public class MainModelHandler {
     public Observable<List<Class>> getPageList(){
         List<Class> list = Arrays.asList(PAGES);
         return Observable.just(list).delay(getWaitTime(), TimeUnit.MILLISECONDS)
+                .map(new Func1<List<Class>, List<Class>>() {
+                    @Override
+                    public List<Class> call(List<Class> classes) {
+                        if(new Random().nextInt(9)<=2){    //30% chances
+                            throw new IllegalStateException("");
+                        }
+                        return classes;
+                    }
+                })
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
