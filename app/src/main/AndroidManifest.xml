@@ -18,6 +18,9 @@
         <activity android:name=".p01.Act_ViewState">
 
         </activity>
+        <activity android:name=".p02.Act_NoId">
+
+        </activity>
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package org.sadalsuud.mvpplayground.p00;
 import android.content.Context;
 
 import org.sadalsuud.mvpplayground.p01.Act_ViewState;
+import org.sadalsuud.mvpplayground.p02.Act_NoId;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +22,7 @@ public class MainModelHandler {
     private static final int WAIT_TIME_HIGHEST = 5000;      //millis
     public static final Class[] PAGES = new Class[]{
             Act_ViewState.class
-            , MainActivity.class
+            , Act_NoId.class
             , MainActivity.class
             , MainActivity.class
             , MainActivity.class
