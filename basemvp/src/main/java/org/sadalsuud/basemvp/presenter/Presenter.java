@@ -13,13 +13,13 @@ import java.util.Random;
 /**
  * Created by fchristysen on 1/21/16.
  */
-public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V>{
+public abstract class Presenter<V extends MvpView> implements MvpPresenter<V>{
     private final String TAG;
     private final String ID;
     private WeakReference<V> mView;
     private ArrayList<MvpPresenter.OnDestroyListener> mListeners;
 
-    public BasePresenter(){
+    public Presenter(){
         this.TAG = this.getClass().getSimpleName();
         this.ID = TAG + "-" + System.currentTimeMillis() + "-" + Long.toHexString(new Random().nextLong());
         this.mListeners = new ArrayList<>();

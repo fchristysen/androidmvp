@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import org.sadalsuud.basemvp.AppUtil;
-import org.sadalsuud.basemvp.presenter.BasePresenter;
+import org.sadalsuud.basemvp.presenter.Presenter;
 import org.sadalsuud.basemvp.presenter.PresenterManager;
 import org.sadalsuud.basemvp.presenter.factory.PresenterFactory;
 import org.sadalsuud.basemvp.view.MvpView;
@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by fchristysen on 1/21/16.
  */
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements MvpView, PresenterFactory{
+public abstract class BaseActivity<P extends Presenter> extends AppCompatActivity implements MvpView, PresenterFactory{
     private String TAG;
     private PresenterManager<P> mPresenterManager= new PresenterManager(this);
 

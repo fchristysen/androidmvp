@@ -11,13 +11,16 @@ import android.widget.EditText;
 import org.sadalsuud.mvpplayground.R;
 import org.sadalsuud.mvpplayground.base.BaseActivity;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by fchristysen on 1/27/16.
  * This page showcases saving state mechanism for views added from code(don't have id)
  * To enable android automatically save view state, those view id must be set(id must be consistent)
  */
 public class Act_NoId extends BaseActivity<Prs_NoId> implements CompoundButton.OnCheckedChangeListener, TextWatcher {
-    private ViewGroup vRoot;
+    @Bind(R.id.root) protected ViewGroup vRoot;
     private EditText vField1;
     private CheckBox vBox1;
 
@@ -31,7 +34,7 @@ public class Act_NoId extends BaseActivity<Prs_NoId> implements CompoundButton.O
 
     public void initView(){
         setContentView(R.layout.act_noid);
-        vRoot = (ViewGroup)findViewById(R.id.root);
+        ButterKnife.bind(this );
         vField1 = new EditText(this);
         vBox1 = new CheckBox(this);
         vRoot.addView(vField1);

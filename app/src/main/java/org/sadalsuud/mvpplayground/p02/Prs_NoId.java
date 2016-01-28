@@ -2,7 +2,7 @@ package org.sadalsuud.mvpplayground.p02;
 
 import android.os.Bundle;
 
-import org.sadalsuud.basemvp.presenter.BasePresenter;
+import org.sadalsuud.mvpplayground.base.BasePresenter;
 
 /**
  * Created by fchristysen on 1/27/16.

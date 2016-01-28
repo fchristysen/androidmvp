@@ -17,19 +17,23 @@ import org.sadalsuud.mvpplayground.base.BaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * This page list and provide navigation to prototype activity
  * This page also demonstrate simple mvp flow when requesting data to an API
  */
 public class MainActivity extends BaseActivity<MainPresenter>
         implements SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
-    private SwipeRefreshLayout vSwipeLayout;
-    private RecyclerView vList;
-    private SimpleListAdapter mAdapter;
-    private ViewGroup vLoadingLayout;
-    private TextView vLoadingText;
-    private ViewGroup vInfoLayout;
-    private TextView vInfoText;
+
+    @Bind(R.id.swipe_layout) protected SwipeRefreshLayout vSwipeLayout;
+    @Bind(R.id.list) protected RecyclerView vList;
+    protected SimpleListAdapter mAdapter;
+    @Bind(R.id.loading_layout) protected ViewGroup vLoadingLayout;
+    @Bind(R.id.loading_text) protected TextView vLoadingText;
+    @Bind(R.id.info_layout) protected ViewGroup vInfoLayout;
+    @Bind(R.id.info_text) protected TextView vInfoText;
 
     //region lifecycle
     @Override
@@ -42,12 +46,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     public void initView(){
         setContentView(R.layout.main_activity);
-        vSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout);
-        vList = (RecyclerView) findViewById(R.id.list);
-        vLoadingLayout = (ViewGroup) findViewById(R.id.loading_layout);
-        vLoadingText = (TextView) findViewById(R.id.loading_text);
-        vInfoLayout = (ViewGroup) findViewById(R.id.info_layout);
-        vInfoText = (TextView) findViewById(R.id.info_text);
+        ButterKnife.bind(this);
     }
 
     public void initState(){
