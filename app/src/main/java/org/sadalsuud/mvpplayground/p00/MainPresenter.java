@@ -8,7 +8,6 @@ import org.sadalsuud.mvpplayground.App;
 import java.util.List;
 
 import rx.Observable;
-import rx.functions.Action1;
 
 /**
  * Created by fchristysen on 1/23/16.
@@ -74,19 +73,13 @@ public class MainPresenter extends Presenter<IMainView> implements IMainPresente
     public void refresh(){
         mState = STATE_LOADING;
         updateViewState();
-        getPageList().subscribe(new Action1<List<Class>>() {
-            @Override
-            public void call(List<Class> classes) {
-                mState = STATE_RESULT;
-                mDatas = classes;
-                updateViewState();
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                mState = STATE_ERROR;
-                updateViewState();
-            }
+        getPageList().subscribe(classes -> {
+            mState = STATE_RESULT;
+            mDatas = classes;
+            updateViewState();
+        }, throwable -> {
+            mState = STATE_ERROR;
+            updateViewState();
         });
     }
 

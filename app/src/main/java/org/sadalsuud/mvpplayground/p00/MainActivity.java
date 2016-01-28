@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
  * This page list and provide navigation to prototype activity
  * This page also demonstrate :
  * > simple mvp flow when requesting data to an API
- * > decoupled relationship between view and presenter
+ * > decoupled relationship(two way interfaced) between view and presenter
  */
 public class MainActivity extends BaseActivity<IMainPresenter>
         implements IMainView<IMainPresenter>, SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
@@ -95,12 +95,7 @@ public class MainActivity extends BaseActivity<IMainPresenter>
 
     public void startLoading(){
         vLoadingLayout.setVisibility(View.VISIBLE);
-        vSwipeLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                vSwipeLayout.setRefreshing(true);
-            }
-        });
+        vSwipeLayout.post(() -> vSwipeLayout.setRefreshing(true));
     }
 
     public void stopLoading(){
@@ -149,14 +144,11 @@ public class MainActivity extends BaseActivity<IMainPresenter>
         @Override
         public void onBindViewHolder(ViewHolder holder,final int position) {
             Class c = mData.get(position);
-            holder.vRoot.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            holder.vRoot.setOnClickListener(v -> {
                     if(mListener!=null){
                         mListener.onItemClick(null, v, position, 0);
                     }
-                }
-            });
+                });
             holder.vText.setText(c.getSimpleName());
         }
 

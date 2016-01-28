@@ -12,7 +12,7 @@ import org.sadalsuud.basemvp.view.MvpView;
 /**
  * Created by fchristysen on 1/21/16.
  */
-public abstract class BaseActivity<P extends MvpPresenter> extends AppCompatActivity implements MvpView<P>, PresenterFactory{
+public abstract class BaseActivity<P extends MvpPresenter> extends AppCompatActivity implements MvpView<P>, PresenterFactory<P>{
     private String TAG;
     private PresenterManager<P> mPresenterManager= new PresenterManager(this);
 
