@@ -2,8 +2,8 @@ package org.sadalsuud.mvpplayground.p00;
 
 import android.os.Bundle;
 
+import org.sadalsuud.basemvp.presenter.Presenter;
 import org.sadalsuud.mvpplayground.App;
-import org.sadalsuud.mvpplayground.base.BasePresenter;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import rx.functions.Action1;
 /**
  * Created by fchristysen on 1/23/16.
  */
-public class MainPresenter extends BasePresenter<MainActivity> {
+public class MainPresenter extends Presenter<IMainView> implements IMainPresenter<IMainView>{
     public static final int STATE_START = 0;
     public static final int STATE_LOADING = 1;
     public static final int STATE_ERROR = 2;
@@ -29,6 +29,11 @@ public class MainPresenter extends BasePresenter<MainActivity> {
         super.onCreate(presenterState);
         mMainModelHandler = App.getMainModelHandler();
 //        refresh();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outPresenterState) {
+        super.onSaveInstanceState(outPresenterState);
     }
 
     @Override

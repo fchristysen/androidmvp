@@ -22,10 +22,12 @@ import butterknife.ButterKnife;
 
 /**
  * This page list and provide navigation to prototype activity
- * This page also demonstrate simple mvp flow when requesting data to an API
+ * This page also demonstrate :
+ * > simple mvp flow when requesting data to an API
+ * > decoupled relationship between view and presenter
  */
-public class MainActivity extends BaseActivity<MainPresenter>
-        implements SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
+public class MainActivity extends BaseActivity<IMainPresenter>
+        implements IMainView<IMainPresenter>, SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
 
     @Bind(R.id.swipe_layout) protected SwipeRefreshLayout vSwipeLayout;
     @Bind(R.id.list) protected RecyclerView vList;
@@ -78,7 +80,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     //endregion
 
     @Override
-    public MainPresenter createPresenter() {
+    public IMainPresenter createPresenter() {
         return new MainPresenter();
     }
 
