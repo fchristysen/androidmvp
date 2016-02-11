@@ -27,7 +27,7 @@ public class MainPresenter extends Presenter<IMainView> implements IMainPresente
     public void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
         mMainModelHandler = App.getMainModelHandler();
-//        refresh();
+//        onRefresh();
     }
 
     @Override
@@ -70,7 +70,7 @@ public class MainPresenter extends Presenter<IMainView> implements IMainPresente
     }
 
     //region Presenter-View
-    public void refresh(){
+    public void onRefresh(){
         mState = STATE_LOADING;
         updateViewState();
         getPageList().subscribe(classes -> {
@@ -83,7 +83,7 @@ public class MainPresenter extends Presenter<IMainView> implements IMainPresente
         });
     }
 
-    public void chooseItem(Class item){
+    public void onChooseItem(Class item){
         getView().navigateTo(item);
     }
     //endregion

@@ -1,5 +1,6 @@
 package org.sadalsuud.mvpplayground.p00;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -27,7 +28,8 @@ import butterknife.ButterKnife;
  * > decoupled relationship(two way interfaced) between view and presenter
  */
 public class MainActivity extends BaseActivity<IMainPresenter>
-        implements IMainView<IMainPresenter>, SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
+        implements IMainView<IMainPresenter>
+        , SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
 
     @Bind(R.id.swipe_layout) protected SwipeRefreshLayout vSwipeLayout;
     @Bind(R.id.list) protected RecyclerView vList;
@@ -68,20 +70,20 @@ public class MainActivity extends BaseActivity<IMainPresenter>
     //region listener
     @Override
     public void onRefresh() {
-        getPresenter().refresh();
+        getPresenter().onRefresh();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Class chosenItem = mAdapter.getData(position);
-        getPresenter().chooseItem(chosenItem);
+        getPresenter().onChooseItem(chosenItem);
     }
 
     //endregion
 
     @Override
     public IMainPresenter createPresenter() {
-        return new MainPresenter();
+        return new MainPresenterTest();
     }
 
     public void showPageList(List<Class> list){
@@ -111,6 +113,11 @@ public class MainActivity extends BaseActivity<IMainPresenter>
     public void hideInfoScreen(){
         vInfoLayout.setVisibility(View.GONE);
         vInfoText.setText("");
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 
     public static class SimpleListAdapter extends RecyclerView.Adapter<SimpleListAdapter.ViewHolder>{

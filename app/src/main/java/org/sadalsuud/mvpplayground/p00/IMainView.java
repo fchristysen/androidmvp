@@ -1,5 +1,7 @@
 package org.sadalsuud.mvpplayground.p00;
 
+import android.content.Context;
+
 import org.sadalsuud.basemvp.presenter.MvpPresenter;
 import org.sadalsuud.basemvp.view.MvpView;
 
@@ -15,4 +17,5 @@ public interface IMainView<P extends MvpPresenter> extends MvpView<P>{
     void stopLoading();
     void showInfoScreen(String message);
     void hideInfoScreen();
+    Context getContext();
 }
