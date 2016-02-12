@@ -3,12 +3,15 @@ package org.sadalsuud.basemvp.presenter;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
+import org.sadalsuud.basemvp.AppUtil;
+
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by fchristysen on 1/21/16.
  */
 public class PresenterStorage {
+    private static final String TAG = PresenterStorage.class.getSimpleName();
     private static final TimeUnit EXPIRATION_UNIT = TimeUnit.SECONDS;
 
     private static PresenterStorage instance;
@@ -24,8 +27,9 @@ public class PresenterStorage {
 
     public static PresenterStorage getInstance(){
         if(instance == null){
-            instance = new PresenterStorage(10, 30);
+            instance = new PresenterStorage(100, Integer.MAX_VALUE);
         }
+        AppUtil.log(TAG + " : Count" + instance.mPresenters.size());
         return instance;
     }
 

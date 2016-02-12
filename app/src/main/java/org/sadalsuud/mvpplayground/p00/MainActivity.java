@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity<IMainPresenter>
 
     @Override
     public IMainPresenter createPresenter() {
-        return new MainPresenterTest();
+        return new MainPresenter();
     }
 
     public void showPageList(List<Class> list){
