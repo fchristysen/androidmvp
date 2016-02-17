@@ -26,10 +26,6 @@ public class Act_CustomViewList extends BaseActivity<Prs_CustomViewList> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
-        initState();
-        restoreState(savedInstanceState);
-        initListener();
     }
 
     public void initView(){
@@ -49,11 +45,10 @@ public class Act_CustomViewList extends BaseActivity<Prs_CustomViewList> {
         vPager.setAdapter(mAdapter);
     }
 
-    public void restoreState(Bundle savedInstanceState){
-        if(savedInstanceState!=null) {
-            SparseArray screenState = savedInstanceState.getBundle("android:viewHierarchyState").getSparseParcelableArray("android:views");
-            mAdapter.getView(0).restoreHierarchyState((SparseArray<Parcelable>)screenState);
-            mAdapter.getView(1).restoreHierarchyState((SparseArray<Parcelable>)screenState);
+    public void onRestoreViewState(SparseArray<Parcelable> viewState){
+        if(viewState!=null) {
+            mAdapter.getView(0).restoreHierarchyState(viewState);
+            mAdapter.getView(1).restoreHierarchyState(viewState);
         }
     }
 

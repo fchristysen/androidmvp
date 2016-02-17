@@ -43,9 +43,6 @@ public class MainActivity extends BaseActivity<IMainPresenter>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
-        initState();
-        initListener();
     }
 
     public void initView(){

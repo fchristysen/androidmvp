@@ -27,9 +27,6 @@ public class Act_NoId extends BaseActivity<Prs_NoId> implements CompoundButton.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
-        initState();
-        initListener();
     }
 
     public void initView(){

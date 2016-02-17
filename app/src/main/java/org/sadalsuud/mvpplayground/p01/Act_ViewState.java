@@ -21,9 +21,6 @@ public class Act_ViewState extends BaseActivity<Prs_ViewState>{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
-        initState();
-        initListener();
     }
 
     public void initView(){
