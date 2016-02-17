@@ -1,9 +1,7 @@
 package org.sadalsuud.mvpplayground.p03;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
-import android.util.SparseArray;
 import android.view.ViewGroup;
 
 import org.sadalsuud.mvpplayground.R;
@@ -21,7 +19,7 @@ import butterknife.ButterKnife;
 public class Act_CustomViewList extends BaseActivity<Prs_CustomViewList> {
     @Bind(R.id.root) protected ViewGroup vRoot;
     @Bind(R.id.viewPager) protected ViewPager vPager;
-    private ViewPagerAdapter mAdapter;
+    private ViewArrayAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +37,18 @@ public class Act_CustomViewList extends BaseActivity<Prs_CustomViewList> {
         vCV1.setId(R.id.countview_1);
         vCV2.setId(R.id.countview_2);
 
-        mAdapter = new ViewPagerAdapter();
+        mAdapter = new ViewArrayAdapter();
         mAdapter.addView(vCV1);
         mAdapter.addView(vCV2);
         vPager.setAdapter(mAdapter);
     }
 
-    public void onRestoreViewState(SparseArray<Parcelable> viewState){
-        if(viewState!=null) {
-            mAdapter.getView(0).restoreHierarchyState(viewState);
-            mAdapter.getView(1).restoreHierarchyState(viewState);
-        }
-    }
+//    public void onRestoreViewState(SparseArray<Parcelable> viewState){
+//        if(viewState!=null) {
+//            mAdapter.getView(0).restoreHierarchyState(viewState);
+//            mAdapter.getView(1).restoreHierarchyState(viewState);
+//        }
+//    }
 
     public void onInitListener(){
     }

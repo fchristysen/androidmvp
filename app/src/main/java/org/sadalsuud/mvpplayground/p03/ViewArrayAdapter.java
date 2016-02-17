@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by fchristysen on 2/16/16.
  */
-public class ViewPagerAdapter extends PagerAdapter {
+public class ViewArrayAdapter extends PagerAdapter implements StateViewPager.StatefulPagerAdapter{
     // This holds all the currently displayable views, in order from left to right.
     private ArrayList<View> views = new ArrayList<View>();
     private ArrayList<String> pageTitle = new ArrayList<String>();
