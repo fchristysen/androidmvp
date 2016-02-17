@@ -28,12 +28,12 @@ public class Act_CustomViewList extends BaseActivity<Prs_CustomViewList> {
         super.onCreate(savedInstanceState);
     }
 
-    public void initView(){
+    public void onInitView(){
         setContentView(R.layout.act_customviewlist);
         ButterKnife.bind(this);
     }
 
-    public void initState(){
+    public void onInitState(){
         CV_CountView vCV1 = new CV_CountView(this);
         CV_CountView vCV2 = new CV_CountView(this);
         vCV1.setId(R.id.countview_1);
@@ -52,7 +52,7 @@ public class Act_CustomViewList extends BaseActivity<Prs_CustomViewList> {
         }
     }
 
-    public void initListener(){
+    public void onInitListener(){
     }
 
     //region listener

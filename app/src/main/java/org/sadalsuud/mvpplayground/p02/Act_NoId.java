@@ -29,7 +29,7 @@ public class Act_NoId extends BaseActivity<Prs_NoId> implements CompoundButton.O
         super.onCreate(savedInstanceState);
     }
 
-    public void initView(){
+    public void onInitView(){
         setContentView(R.layout.act_noid);
         ButterKnife.bind(this );
         vField1 = new EditText(this);
@@ -38,14 +38,14 @@ public class Act_NoId extends BaseActivity<Prs_NoId> implements CompoundButton.O
         vRoot.addView(vBox1);
     }
 
-    public void initState(){
+    public void onInitState(){
         vField1.setId(R.id.text1);
         vBox1.setId(R.id.loading_text);
 
         vBox1.setChecked(true);
     }
 
-    public void initListener(){
+    public void onInitListener(){
         vField1.addTextChangedListener(this);
         vBox1.setOnCheckedChangeListener(this);
     }

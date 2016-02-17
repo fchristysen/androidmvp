@@ -45,12 +45,12 @@ public class MainActivity extends BaseActivity<IMainPresenter>
         super.onCreate(savedInstanceState);
     }
 
-    public void initView(){
+    public void onInitView(){
         setContentView(R.layout.main_activity);
         ButterKnife.bind(this);
     }
 
-    public void initState(){
+    public void onInitState(){
         vList.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new SimpleListAdapter();
         vList.setAdapter(mAdapter);
@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity<IMainPresenter>
         vInfoLayout.setVisibility(View.GONE);
     }
 
-    public void initListener(){
+    public void onInitListener(){
         vSwipeLayout.setOnRefreshListener(this);
         mAdapter.setOnItemClickListener(this);
     }

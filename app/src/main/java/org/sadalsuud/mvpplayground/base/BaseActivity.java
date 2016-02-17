@@ -31,16 +31,22 @@ public abstract class BaseActivity<P extends MvpPresenter> extends AppCompatActi
         ViewServer.get(this).addWindow(this);
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
 
-        initView();
-        initState();
-        initListener();
+        onInitView();
+        onInitState();
+        onInitListener();
     }
 
-    protected abstract void initView();
+    /** Inflate your layout and other initialized of view here.
+     */
+    protected abstract void onInitView();
 
-    protected abstract void initState();
+    /** Set your default state for you view here.
+     */
+    protected abstract void onInitState();
 
-    protected abstract void initListener();
+    /** Set listener for your view here
+     */
+    protected abstract void onInitListener();
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {

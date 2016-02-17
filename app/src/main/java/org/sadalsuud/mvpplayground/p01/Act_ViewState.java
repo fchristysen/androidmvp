@@ -23,16 +23,16 @@ public class Act_ViewState extends BaseActivity<Prs_ViewState>{
         super.onCreate(savedInstanceState);
     }
 
-    public void initView(){
+    public void onInitView(){
         setContentView(R.layout.act_viewstate);
         ButterKnife.bind(this);
     }
 
-    public void initState(){
+    public void onInitState(){
 
     }
 
-    public void initListener(){
+    public void onInitListener(){
     }
     //endregion
 
