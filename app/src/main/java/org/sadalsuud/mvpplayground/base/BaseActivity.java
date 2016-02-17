@@ -19,6 +19,7 @@ public abstract class BaseActivity<P extends MvpPresenter> extends AppCompatActi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ViewServer.get(this).addWindow(this);
         this.TAG = this.getClass().getSimpleName();
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
         AppUtil.log(TAG + " : " + "onCreate");

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import org.sadalsuud.mvpplayground.p01.Act_ViewState;
 import org.sadalsuud.mvpplayground.p02.Act_NoId;
+import org.sadalsuud.mvpplayground.p03.Act_CustomViewList;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,12 +19,12 @@ import rx.functions.Func1;
  * Created by fchristysen on 1/23/16.
  */
 public class MainModelHandler {
-    private static final int WAIT_TIME_LOWEST = 2000;      //millis
-    private static final int WAIT_TIME_HIGHEST = 5000;      //millis
+    private static final int WAIT_TIME_LOWEST = 1000;      //millis
+    private static final int WAIT_TIME_HIGHEST = 3000;      //millis
     public static final Class[] PAGES = new Class[]{
             Act_ViewState.class
             , Act_NoId.class
-            , MainActivity.class
+            , Act_CustomViewList.class
             , MainActivity.class
             , MainActivity.class
             , MainActivity.class

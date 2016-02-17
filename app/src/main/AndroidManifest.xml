@@ -21,6 +21,9 @@
         <activity android:name=".p02.Act_NoId">
 
         </activity>
+        <activity android:name=".p03.Act_CustomViewList">
+
+        </activity>
     </application>
 
 </manifest>

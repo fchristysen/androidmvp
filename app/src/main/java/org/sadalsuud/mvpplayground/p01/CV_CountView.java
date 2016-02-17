@@ -32,6 +32,10 @@ public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>
     private ImageButton vSubButton;
     private TextView vText;
 
+    public CV_CountView(Context context){
+        this(context, null);
+    }
+
     public CV_CountView(Context context, AttributeSet attrs){
         super(context, attrs);
         this.TAG = this.getClass().getSimpleName();
@@ -61,7 +65,7 @@ public class CV_CountView extends LinearLayout implements MvpView<Prs_CountView>
 
     //region lifecycle
     @Override
-    protected void onRestoreInstanceState(Parcelable state) {
+    public void onRestoreInstanceState(Parcelable state) {
         AppUtil.log(TAG + " : " + "onRestoreInstanceState");
         super.onRestoreInstanceState(mPresenterManager.onRestoreInstanceState(this, state));
     }
